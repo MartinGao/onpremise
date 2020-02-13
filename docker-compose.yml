@@ -9,8 +9,8 @@ x-sentry-defaults: &sentry_defaults
       - SENTRY_IMAGE
   image: sentry-onpremise-local
   depends_on:
-    - redis
-    - postgres
+    - daocloud.io/library/redis
+    - daocloud.io/library/postgres
     - memcached
     - smtp
     - snuba-api
@@ -25,7 +25,7 @@ x-sentry-defaults: &sentry_defaults
 x-snuba-defaults: &snuba_defaults
   << : *restart_policy
   depends_on:
-    - redis
+    - daocloud.io/library/redis
     - clickhouse
     - kafka
   image: 'getsentry/snuba:latest'
