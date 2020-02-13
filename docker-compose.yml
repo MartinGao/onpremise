@@ -28,7 +28,7 @@ x-snuba-defaults: &snuba_defaults
     - redis
     - clickhouse
     - kafka
-  image: 'getsentry/snuba:latest'
+  image: 'ccr.ccs.tencentyun.com/mintmuse-sentry/snuba:latest'
   environment:
     SNUBA_SETTINGS: docker
     CLICKHOUSE_HOST: clickhouse
@@ -46,7 +46,7 @@ x-snuba-defaults: &snuba_defaults
 services:
   smtp:
     << : *restart_policy
-    image: tianon/exim4
+    image: ccr.ccs.tencentyun.com/mintmuse-sentry/exim4
     volumes:
       - 'sentry-smtp:/var/spool/exim4'
       - 'sentry-smtp-log:/var/log/exim4'
@@ -155,22 +155,5 @@ services:
         BASE_IMAGE: 'sentry-onpremise-local'
     command: '"0 0 * * * gosu sentry sentry cleanup --days $SENTRY_EVENT_RETENTION_DAYS"'
 volumes:
-  sentry-data:
-    external: true
-  sentry-postgres:
-    external: true
-  sentry-redis:
-    external: true
-  sentry-zookeeper:
-    external: true
-  sentry-kafka:
-    external: true
-  sentry-clickhouse:
-    external: true
-  sentry-symbolicator:
-    external: true
-  sentry-secrets:
-  sentry-smtp:
-  sentry-zookeeper-log:
-  sentry-kafka-log:
-  sentry-smtp-log:
+
+# sudo curl -L https://get.daocloud.io/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
