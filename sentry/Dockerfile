@@ -1,5 +1,5 @@
 ARG SENTRY_IMAGE
-FROM ${SENTRY_IMAGE:-getsentry/sentry:latest}
+FROM ${SENTRY_IMAGE:-ccr.ccs.tencentyun.com/mintmuse-sentry/sentry:latest}
 
 WORKDIR /usr/src/sentry
 
